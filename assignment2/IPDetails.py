@@ -32,8 +32,7 @@ def ipDetails(IPAdress, subnetMask):
     print("The first endpoint: " + str(first))
     print("The last endpoint: " + str(last))
     # 6
-    network, net_bits = full_ip.split('/')
-    host_bits = 32 - int(net_bits)
+    host_bits = 32 - int(subnetMask)
     netmask = socket.inet_ntoa(struct.pack('!I', (1 << 32) - (1 << host_bits)))
     subnetMask_split = netmask.split('.')
     broadcast = [(int(ioctet) | ~int(moctet)) & 0xff for ioctet, moctet in zip(ip_split, subnetMask_split)]
